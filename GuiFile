@@ -1,0 +1,100 @@
+from tkinter import *
+
+def order():
+    food = []
+    
+    for index in listbox.curselection():
+        food.insert(index,listbox.get(index))
+    print('You ordered: ')
+    for index in food:
+        print(index)
+    print('''Thanks for the order.
+Have a nice day!''')
+    window.destroy()
+    
+def add():
+    listbox.insert(listbox.size(), entrybox.get())
+    listbox.config(height=listbox.size())
+    
+def delete():   
+    for index in reversed(listbox.curselection()):
+        listbox.delete(index)
+    listbox.config(height=listbox.size())
+    
+window = Tk()
+
+window.config(background='#912BBC')
+label = Label(window,
+              text='NITJ Hotel',
+              font=('broadway',
+                    40,
+                    ),
+              bg='#912BBC')
+label.pack()
+
+listbox = Listbox(window,
+                  bg='#D875C7',
+                  font=('Constantia',
+                        20,
+                        'bold'),
+                  width=25,
+                  selectmode='multiple')
+listbox.pack()
+
+listbox.insert(1, 'Pizza')
+listbox.insert(2, 'Hamburger')
+listbox.insert(3, 'Soup')
+listbox.insert(4, 'Spring Roll')
+listbox.insert(5, 'Salad')
+listbox.config(height=listbox.size())
+
+entrybox = Entry(window,
+                font=('arail',
+                   20,
+                   ),
+             fg='#8C6A5D',
+               bg='#5F374B',
+               width=25,)
+entrybox.pack()
+
+add = Button(window,
+             text='Add',
+             font=('arail',
+                   20,
+                   ),
+             fg='#FFEBB2',
+               bg='#E9A89B',
+               activeforeground='#FFEBB2',
+               activebackground='#E9A89B',
+               command=add,
+               width=7)
+add.pack()
+
+delete= Button(window,
+             text='Delete',
+             font=('arail',
+                   20,
+                   ),
+                fg='#FFEBB2',
+               bg='#E9A89B',
+               activeforeground='#FFEBB2',
+               activebackground='#E9A89B',
+               command=delete,
+               width=7)
+delete.pack()
+
+order = Button(window,
+               text='Order',
+               font=('arial',
+                      20,
+                     ),
+                fg='#FFEBB2',
+               bg='#E9A89B',
+               activeforeground='#FFEBB2',
+               activebackground='#E9A89B',
+               command=order,
+               width=7)
+order.pack()
+
+
+window.mainloop()
